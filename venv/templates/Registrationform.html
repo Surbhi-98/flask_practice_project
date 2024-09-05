@@ -1,0 +1,72 @@
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+        <title>Registration Form</title>
+    </head>
+    <body bgcolor="white">
+      {% if error %}
+      <p><strong>Error</strong>:{{error}}</p>
+      {% endif %}
+        <center>
+        <h1>Registration Form</h1>
+        <!--{% block main %}-->
+        <form action="/register" method="POST">
+          {{ form.csrf_token }}
+          {{ form.options }}
+            <label for="Name">Name :</label>
+            <input type="text" id="Name" name="Name" placeholder="ENTER NAME HERE" required>
+            <br>
+            <br>
+            <label for="Email">Email :</label>
+            <input type="email" id="Email" name="Email" placeholder="ENTER EMAIL" required>
+            <br>
+            <br>
+            <label for="Phone">Phone :</label>
+            <input type="tel" id="Phone" name="Phone" placeholder="ENTER PHONE NUMBER HERE" pattern="[0-9]{10}"required>
+            <br>
+            <br>
+            <label for="Gender">Gender :</label>
+            <input type="radio" id="Gender" name="Gender" checked="checked">MALE
+            <input type="radio" id="Gender" name="Gender">FEMALE
+            <br>
+            <br>
+            Country : <select name="Country">
+              {% for data in form.options.errors %}
+              <option>{{ data }}</option>
+              {% endfor %}
+            </select>
+            <br>
+            <br>
+            <label for="Password">Password :</label>
+        <input type="password" id="Password" name="Password" minlength="8" maxlength="16" placeholder="PASSWORD LENGTH BETWEEN 8 TO 16 CHARACTERS" required>
+            <br>
+            <br>
+            <label for="confirm_password">Confirm Password :</label>
+        <input type="password" id="confirm_password" name="confirm_password" minlength="8" maxlength="16" placeholder="RETYPE PASSWORD" required>
+            <br>
+            <br>
+            <input onclick="validateform()" type="submit" value="Submit">
+        </form>
+        <!--{% endblock %}-->
+        <script>
+        function validateform()
+        {
+    //create reference to the input elements
+    var Name = document.getElementById("Name").value;
+    var Email = document.getElementById("Email").value;
+    var Phone = document.getElementById("Phone").value;
+    var Gender = document.getElementById("Gender").value;
+    var Country = document.getElementById("Country").value;
+    var password = document.getElementById("password").value;
+    var confirm_password = document.getElementById("confirm_password").value;
+    if (password != confirm_password) {
+      alert("PASSWORD MISMATCH");
+      alert("FORM DID NOT SUBMITTED");
+      alert("FILL AGAIN");
+      return false;
+    }
+    }
+    </script>
+      </center>
+    </body>
+</html>

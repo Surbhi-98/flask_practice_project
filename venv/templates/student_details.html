@@ -1,0 +1,40 @@
+<html lang="en" dir="ltr">
+    <head>
+		<meta charset="UTF-8">
+        <title>FORM CREATION</title>
+    </head>
+    <body bgcolor="white">
+      <button onclick="back()">BACK</button>
+      <br><br>
+      <h3>REGISTERED STUDENT DETAILS</h3>
+    <table border="1" cellspacing="1" width="500">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>EMAIL</th>
+        <th>USERNAME</th>
+        <th>PASSWORD</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in student_result %}
+      <tr>
+        <th scope="row">{{data[0]}}</th>
+        <td>{{data[1]}}</td>
+        <td>{{data[2]}}</td>
+        <td>{{data[3]}}</td>
+        <td>{{data[4]}}</td>
+        <td>{{data[5]}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+    <script>
+    function back(){
+      window.history.back();
+    }
+    </script>
+  </body>
+</html>
